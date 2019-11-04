@@ -23,7 +23,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Nancy
-      uses: sonatype/nancy-github-action@master
+      uses: sonatype-nexus-community/nancy-github-action@master
       with:
         target: go.sum
 ```
