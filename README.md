@@ -1,6 +1,14 @@
+<p align="center">
+    <img src="https://github.com/sonatype-nexus-community/nancy/blob/master/docs/images/nancy.png" width="350"/>
+</p>
+
+<p align="center">
+    <a href="https://gitter.im/sonatype-nexus-community/nancy?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge"><img src="https://badges.gitter.im/sonatype-nexus-community/nancy.svg" alt="Gitter"></img></a>
+</p>
+
 # Nancy for GitHub Actions
 
-Run Sonatype Nancy as part of your GitHub Actions workflow.
+Run [Sonatype Nancy](https://github.com/sonatype-nexus-community/nancy) as part of your GitHub Actions workflow.
 
 ## Inputs
 
@@ -47,4 +55,4 @@ Have fun creating and using Nancy for GitHub Actions, we are glad to have you he
 
 Looking to contribute to our code but need some help? There's a few ways to get information:
 
-* Chat with us on [Gitter](https://gitter.im/sonatype/nexus-developers)
+* Chat with us on [Gitter](https://gitter.im/sonatype-nexus-community/nancy)
