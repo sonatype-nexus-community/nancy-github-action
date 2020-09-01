@@ -24,6 +24,6 @@ LABEL com.github.actions.name="Nancy for GitHub Actions" \
 #        https://github.com/sonatype-nexus-community/nancy/releases/download/v1.0.0/nancy-linux.amd64-v1.0.0 && \
 #    chmod +x /usr/local/nancy
 
-COPY entrypoint.sh /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+#COPY entrypoint.sh /entrypoint.sh
+#
+#ENTRYPOINT ["/entrypoint.sh"]
