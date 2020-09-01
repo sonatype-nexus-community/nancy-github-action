@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#FROM golang:1.14-alpine
-FROM sonatypecommunity/nancy:latest
+FROM golang:1.14-alpine
+#FROM sonatypecommunity/nancy:latest
 
 LABEL com.github.actions.name="Nancy for GitHub Actions" \
     com.github.actions.description="Run Sonatype Nancy as part of your GitHub Actions workflow."
