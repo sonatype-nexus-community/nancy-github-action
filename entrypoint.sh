@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#cd $GITHUB_WORKSPACE
+pwd
+cd $GITHUB_WORKSPACE
+pwd
 #/usr/local/nancy $1
-go list -json -m all | /nancy $1
+/usr/local/go/bin/go list -json -m all | nancy $1
