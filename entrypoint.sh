@@ -16,4 +16,4 @@
 
 #cd $GITHUB_WORKSPACE
 #/usr/local/nancy $1
-$1
+go list -json -m all | /nancy $1
