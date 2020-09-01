@@ -20,7 +20,7 @@ LABEL com.github.actions.name="Nancy for GitHub Actions" \
 RUN apk add --no-cache curl && \
     mkdir -p /usr/local/ && \
     curl -L -o /usr/local/nancy \
-        https://github.com/sonatype-nexus-community/nancy/releases/download/v0.3.1/nancy-linux.amd64-v0.3.1 && \
+        https://github.com/sonatype-nexus-community/nancy/releases/download/v1.0.0/nancy-linux.amd64-v1.0.0 && \
     chmod +x /usr/local/nancy
 
 COPY entrypoint.sh /entrypoint.sh
