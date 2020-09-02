@@ -2,14 +2,19 @@ name: 'Nancy for GitHub Actions'
 author: 'Sonatype'
 description: 'Run Sonatype Nancy as part of your GitHub Actions workflow.'
 inputs:
-  target:
-    description: 'This is the path to the go.sum or Gopkg.lock file.'
+  goListFile:
+    description: 'The path to a file containing the output of a "go list ..." command.'
     required: true
+  nancyCommand:
+    description: 'Optional nancy command. Defaults to "sleuth"'
+    required: false
+    default: 'sleuth'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.target }}
+    - ${{ inputs.goListFile }}
+    - ${{ inputs.nancyCommand }}
 branding:
   icon: 'shield'
   color: 'gray-dark'

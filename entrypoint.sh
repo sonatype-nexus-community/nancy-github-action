@@ -14,12 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-pwd
-cd $GITHUB_WORKSPACE
-pwd
-
 export GOROOT=/usr/local/go/
 export PATH=$PATH:$GOROOT/bin
 
-#/usr/local/nancy $1
-/usr/local/go/bin/go list -json -m all | nancy $1
+nancy $2 < $1
