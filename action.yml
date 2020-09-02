@@ -4,7 +4,8 @@ description: 'Run Sonatype Nancy as part of your GitHub Actions workflow.'
 inputs:
   goListFile:
     description: 'The path to a file containing the output of a "go list ..." command.'
-    required: true
+    required: false
+    default: go.list
   nancyCommand:
     description: 'Optional nancy command. Defaults to "sleuth"'
     required: false
