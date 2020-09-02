@@ -12,17 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM golang:1.14-alpine
-#FROM sonatypecommunity/nancy:latest
+FROM alpine:3.12
 
 LABEL com.github.actions.name="Nancy for GitHub Actions" \
     com.github.actions.description="Run Sonatype Nancy as part of your GitHub Actions workflow."
 
-#RUN apk add --no-cache curl && \
-#    mkdir -p /usr/local/ && \
-#    curl -L -o /usr/local/nancy \
-#        https://github.com/sonatype-nexus-community/nancy/releases/download/v1.0.0/nancy-linux.amd64-v1.0.0 && \
-#    chmod +x /usr/local/nancy
 RUN apk add --no-cache curl && \
     curl -L -o nancy.apk \
         https://github.com/sonatype-nexus-community/nancy/releases/download/v1.0.0/nancy_1.0.0_linux_386.apk && \
