@@ -16,19 +16,21 @@ Run [Sonatype Nancy](https://github.com/sonatype-nexus-community/nancy) as part 
 
 **Default** : `go.list`. 
 
-This is the path to a file containing the output of the `go list` command.
+The path to a file containing the output of the `go list` command.
 The `go.list` file can be created with a command like: `go list -json -m all > go.list`
 
 ### `nancyCommand`
 
 **Default** : `sleuth` 
 
-You can replace this command with over commands recognized by `nancy`. e.g. `sleuth --loud`
+You can customize this input with other commands and flags recognized by `nancy`. 
+ 
+For example: `sleuth --loud`
 
 ## Example Usage
 
-The example below only requires `go` be installed in order to generate the `go.list` file. You could
-instead have some other part of the CI build generate that file for use by `nancy`.
+The example below only requires `go` be installed in order to generate the `go.list` file. 
+You could instead have some other part of the CI build generate that file for use by `nancy`.
 ```
 name: Go Nancy
 
