@@ -95,7 +95,7 @@ jobs:
         nancyCommand: sleuth --loud
 ```
  
-  * Gotchya - As of go v1.15, there is an issue using `act` related to how docker handles http `indentity`
+  * Gotchya - As of go v1.15, there is an issue using `act` related to how docker handles http `identity`
   connections. Due to this issue, I had to run `act` in a Linux Virtual Machine when running go 1.15. The error 
   you see running `act` resulting from this issue looks similar to this:
     ```
