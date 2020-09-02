@@ -36,6 +36,64 @@ jobs:
         target: go.sum
 ```
 
+## Development
+
+There are probably better ways, but I found it useful to leverage the [act](https://github.com/nektos/act) project while developing
+this github action. This project allows you to push a branch to the github action repo, and use a commit hash to test the behavior
+of that branch. For example, a test project that uses the `nancy-github-action` could have the following `.github/workflows/go.yml` file. 
+Notice the commit hash `950a8965cd37d8e14aaa6aebd6c0d71b4da71fa3` used below in the `Scan` step to run the 
+development branch. 
+
+```
+name: Go
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Go 1.x
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.13
+      id: go
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+
+    - name: Build
+      run: go build -v .
+
+    - name: Test
+      run: go test -v .
+
+    - name: WriteGoList
+      run: go list -json -m all > go.list
+
+    - name: Scan
+      uses: sonatype-nexus-community/nancy-github-action@950a8965cd37d8e14aaa6aebd6c0d71b4da71fa3
+      with:
+        nancyCommand: sleuth --loud
+```
+ 
+  * Gotchya - As of go v1.15, there is an issue using `act` related to how docker handles http `indentity`
+  connections. Due to this issue, I had to run `act` in a Linux Virtual Machine when running go 1.15. The error 
+  you see running `act` resulting from this issue looks similar to this:
+    ```
+    $ act 
+    [Go/Build] 🚀  Start image=node:12.6-buster-slim
+    [Go/Build]   🐳  docker run image=node:12.6-buster-slim entrypoint=["/usr/bin/tail" "-f" "/dev/null"] cmd=[]
+    [Go/Build]   🐳  docker cp src=/Users/bhamail/sonatype/community/go/gh-action-test/. dst=/github/workspace
+    Error: error during connect: Post "http://%2Fvar%2Frun%2Fdocker.sock/v1.40/exec/9f2eb3f2ea59b7e41c32efe56a90c2919fe4b459b3f1e763dd02686f797839da/start": net/http: HTTP/1.x transport connection broken: unsupported transfer encoding: "identity"
+    ```
+
 ## The Fine Print
 
 It is worth noting that this is **NOT SUPPORTED** by Sonatype, and is a contribution of ours
