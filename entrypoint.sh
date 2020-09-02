@@ -17,5 +17,9 @@
 pwd
 cd $GITHUB_WORKSPACE
 pwd
+
+export GOROOT=/usr/local/go/
+export PATH=$PATH:$GOROOT/bin
+
 #/usr/local/nancy $1
 /usr/local/go/bin/go list -json -m all | nancy $1
