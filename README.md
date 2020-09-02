@@ -12,12 +12,23 @@ Run [Sonatype Nancy](https://github.com/sonatype-nexus-community/nancy) as part 
 
 ## Inputs
 
-### `target`
+### `goListFile`
 
-**Required** This is the path to the go.sum or Gopkg.lock file.
+**Default** : `go.list`. 
+
+This is the path to a file containing the output of the `go list` command.
+The `go.list` file can be created with a command like: `go list -json -m all > go.list`
+
+### `nancyCommand`
+
+**Default** : `sleuth` 
+
+You can replace this command with over commands recognized by `nancy`. e.g. `sleuth --loud`
 
 ## Example Usage
 
+The example below only requires `go` be installed in order to generate the `go.list` file. You could
+instead have some other part of the CI build generate that file for use by `nancy`.
 ```
 name: Go Nancy
 
@@ -25,15 +36,20 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+
+    - name: Set up Go 1.x in order to write go.list file
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.13
+    - name: WriteGoList
+      run: go list -json -m all > go.list
+
     - name: Nancy
       uses: sonatype-nexus-community/nancy-github-action@master
-      with:
-        target: go.sum
 ```
 
 ## Development
@@ -67,12 +83,6 @@ jobs:
 
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
-
-    - name: Build
-      run: go build -v .
-
-    - name: Test
-      run: go test -v .
 
     - name: WriteGoList
       run: go list -json -m all > go.list
