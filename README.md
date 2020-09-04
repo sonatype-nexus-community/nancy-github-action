@@ -12,12 +12,25 @@ Run [Sonatype Nancy](https://github.com/sonatype-nexus-community/nancy) as part 
 
 ## Inputs
 
-### `target`
+### `goListFile`
 
-**Required** This is the path to the go.sum or Gopkg.lock file.
+**Default** : `go.list`. 
+
+The path to a file containing the output of the `go list` command.
+The `go.list` file can be created with a command like: `go list -json -m all > go.list`
+
+### `nancyCommand`
+
+**Default** : `sleuth` 
+
+You can customize this input with other commands and flags recognized by `nancy`. 
+ 
+For example: `sleuth --loud`
 
 ## Example Usage
 
+The example below only requires `go` be installed in order to generate the `go.list` file. 
+You could instead have some other part of the CI build generate that file for use by `nancy`.
 ```
 name: Go Nancy
 
@@ -25,16 +38,73 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+
+    - name: Set up Go 1.x in order to write go.list file
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.13
+    - name: WriteGoList
+      run: go list -json -m all > go.list
+
     - name: Nancy
       uses: sonatype-nexus-community/nancy-github-action@master
-      with:
-        target: go.sum
 ```
+
+## Development
+
+There are probably better ways, but I found it useful to leverage the [act](https://github.com/nektos/act) project while developing
+this github action. This project allows you to push a branch to the github action repo, and use a commit hash to test the behavior
+of that branch. For example, a test project that uses the `nancy-github-action` could have the following `.github/workflows/go.yml` file. 
+Notice the commit hash `950a8965cd37d8e14aaa6aebd6c0d71b4da71fa3` used below in the `Scan` step to run the 
+development branch. 
+
+```
+name: Go
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Go 1.x
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.13
+      id: go
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+
+    - name: WriteGoList
+      run: go list -json -m all > go.list
+
+    - name: Scan
+      uses: sonatype-nexus-community/nancy-github-action@950a8965cd37d8e14aaa6aebd6c0d71b4da71fa3
+      with:
+        nancyCommand: sleuth --loud
+```
+ 
+  * Gotchya - As of go v1.15, there is an issue using `act` related to how docker handles http `identity`
+  connections. Due to this issue, I had to run `act` in a Linux Virtual Machine when running go 1.15. The error 
+  you see running `act` resulting from this issue looks similar to this:
+    ```
+    $ act 
+    [Go/Build] 🚀  Start image=node:12.6-buster-slim
+    [Go/Build]   🐳  docker run image=node:12.6-buster-slim entrypoint=["/usr/bin/tail" "-f" "/dev/null"] cmd=[]
+    [Go/Build]   🐳  docker cp src=/Users/bhamail/sonatype/community/go/gh-action-test/. dst=/github/workspace
+    Error: error during connect: Post "http://%2Fvar%2Frun%2Fdocker.sock/v1.40/exec/9f2eb3f2ea59b7e41c32efe56a90c2919fe4b459b3f1e763dd02686f797839da/start": net/http: HTTP/1.x transport connection broken: unsupported transfer encoding: "identity"
+    ```
 
 ## The Fine Print
 
