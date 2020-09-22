@@ -56,7 +56,7 @@ jobs:
 
 ## Development
 
-There are probably better ways, but I found it useful to leverage the [act](https://github.com/nektos/act) project while developing
+I found it useful to leverage the [act](https://github.com/nektos/act) project while developing
 this github action. This project allows you to push a branch to the github action repo, and use a commit hash to test the behavior
 of that branch. For example, a test project that uses the `nancy-github-action` could have the following `.github/workflows/go.yml` file. 
 Notice the commit hash `950a8965cd37d8e14aaa6aebd6c0d71b4da71fa3` used below in the `Scan` step to run the 
