@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/sonatype-nexus-community/nancy/blob/master/docs/images/nancy.png" width="350"/>
+    <img src="https://github.com/sonatype-nexus-community/nancy/blob/main/docs/images/nancy.png" width="350"/>
 </p>
 
 <p align="center">
@@ -51,7 +51,7 @@ jobs:
       run: go list -json -m all > go.list
 
     - name: Nancy
-      uses: sonatype-nexus-community/nancy-github-action@master
+      uses: sonatype-nexus-community/nancy-github-action@main
 ```
 
 ## Development
@@ -67,9 +67,9 @@ name: Go
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
 
