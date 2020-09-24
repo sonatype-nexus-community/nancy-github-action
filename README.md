@@ -58,7 +58,7 @@ jobs:
 
 I found it useful to leverage the [act](https://github.com/nektos/act) project while developing
 this github action. This project allows you to push a branch to the github action repo, and use a commit hash to test the behavior
-of that branch. For example, a [test project](https://github.com/bhamail/gh-action-test) that uses the `nancy-github-action` could have the following `.github/workflows/go.yml` file. 
+of that branch. For example, a [test project](https://github.com/bhamail/nancy-gh-action-test) that uses the `nancy-github-action` could have the following `.github/workflows/go.yml` file. 
 Notice the commit hash `950a8965cd37d8e14aaa6aebd6c0d71b4da71fa3` used below in the `Scan` step to run the 
 development branch. 
 
@@ -102,7 +102,7 @@ jobs:
     $ act 
     [Go/Build] 🚀  Start image=node:12.6-buster-slim
     [Go/Build]   🐳  docker run image=node:12.6-buster-slim entrypoint=["/usr/bin/tail" "-f" "/dev/null"] cmd=[]
-    [Go/Build]   🐳  docker cp src=/Users/bhamail/sonatype/community/go/gh-action-test/. dst=/github/workspace
+    [Go/Build]   🐳  docker cp src=/Users/bhamail/sonatype/community/go/nancy-gh-action-test/. dst=/github/workspace
     Error: error during connect: Post "http://%2Fvar%2Frun%2Fdocker.sock/v1.40/exec/9f2eb3f2ea59b7e41c32efe56a90c2919fe4b459b3f1e763dd02686f797839da/start": net/http: HTTP/1.x transport connection broken: unsupported transfer encoding: "identity"
     ```
 
