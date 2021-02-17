@@ -16,6 +16,10 @@
 
 desiredVersion="${INPUT_NANCYVERSION}"
 echo "desiredVersion: ${desiredVersion}"
+if [ -z "$desiredVersion" ]; then
+  >&2 echo "missing environment variable: INPUT_NANCYVERSION"
+  exit 1
+fi
 if [[ ${desiredVersion} == "latest" ]]; then
   latest_version_is=$(curl --fail -s https://api.github.com/repos/sonatype-nexus-community/nancy/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
   desiredVersion=${latest_version_is}
