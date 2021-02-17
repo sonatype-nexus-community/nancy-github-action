@@ -14,10 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-desiredVersion="${INPUT_NANCYVERSION}"
+desiredVersion="$1"
 echo "desiredVersion: ${desiredVersion}"
 if [ -z "$desiredVersion" ]; then
-  >&2 echo "missing environment variable: INPUT_NANCYVERSION"
+  >&2 echo "must specify a desiredVersion"
   exit 1
 fi
 if [[ ${desiredVersion} == "latest" ]]; then
