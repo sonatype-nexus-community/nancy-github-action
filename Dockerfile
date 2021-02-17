@@ -20,7 +20,7 @@ LABEL com.github.actions.name="Nancy for GitHub Actions" \
 RUN apk add --no-cache curl
 # required to get grep that supports -P option
 RUN apk add --no-cache --upgrade grep
-RUN desiredVersion="${NANCY_VERSION}" \
+RUN desiredVersion="${INPUT_NANCYVERSION}" \
     echo "desiredVersion: ${desiredVersion}" \
     if [[ ${desiredVersion} == "latest" ]] then \
       latest_version_is=$(curl --fail -s https://api.github.com/repos/sonatype-nexus-community/nancy/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")') \

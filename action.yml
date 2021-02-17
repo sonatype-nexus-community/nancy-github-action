@@ -17,8 +17,8 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  env:
-    NANCY_VERSION: inputs.nancyVersion
+#  env:
+#    NANCY_VERSION: $inputs.nancyVersion
   args:
     - ${{ inputs.goListFile }}
     - ${{ inputs.nancyCommand }}
