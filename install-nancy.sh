@@ -15,7 +15,7 @@
 # limitations under the License.
 
 desiredVersion="$1"
-echo "desiredVersion: ${desiredVersion}"
+echo "desired nancy version: ${desiredVersion}"
 if [ -z "$desiredVersion" ]; then
   >&2 echo "must specify a desiredVersion, like: latest or v1.0.15"
   exit 1
