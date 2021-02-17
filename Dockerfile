@@ -22,6 +22,9 @@ RUN apk add --no-cache curl
 # required to get grep that supports -P option
 RUN apk add --no-cache --upgrade grep
 
+# required to bash for install script
+RUN apk add --no-cache --upgrade bash
+
 COPY install-nancy.sh /install-nancy.sh
 RUN ./install-nancy.sh
 
