@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Copyright (c) 2019-present Sonatype, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
