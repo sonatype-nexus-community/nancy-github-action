@@ -17,4 +17,6 @@
 echo "entrypoint NANCY_VERSION: ${NANCY_VERSION}"
 echo "entrypoint INPUT_NANCYVERSION: ${INPUT_NANCYVERSION}"
 
+./install-nancy.sh $INPUT_NANCYVERSION
+
 nancy $2 < $1

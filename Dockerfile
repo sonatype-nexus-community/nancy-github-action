@@ -26,7 +26,6 @@ RUN apk add --no-cache --upgrade grep
 RUN apk add --no-cache --upgrade bash
 
 COPY install-nancy.sh /install-nancy.sh
-RUN ./install-nancy.sh $INPUT_NANCYVERSION
 
 COPY entrypoint.sh /entrypoint.sh
 
