@@ -20,6 +20,6 @@ echo "entrypoint INPUT_NANCYVERSION: ${INPUT_NANCYVERSION}"
 pwd
 ls -alh
 ls -alh /
-./install-nancy.sh $INPUT_NANCYVERSION
+/install-nancy.sh $INPUT_NANCYVERSION
 
 nancy $2 < $1
