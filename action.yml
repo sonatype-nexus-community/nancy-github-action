@@ -3,7 +3,7 @@ author: 'Sonatype'
 description: 'Run Sonatype Nancy as part of your GitHub Actions workflow.'
 inputs:
   nancyVersion:
-    description: 'The version of Nancy to run. Example: v1.0.15 See: https://github.com/sonatype-nexus-community/nancy/releases for available versions.'
+    description: 'The version of Nancy to run. Examples: "latest", "v1.0.15" See: https://github.com/sonatype-nexus-community/nancy/releases for available versions.'
     required: true
     default: 'latest'
   goListFile:

@@ -17,6 +17,7 @@ FROM alpine:3.12
 LABEL com.github.actions.name="Nancy for GitHub Actions" \
     com.github.actions.description="Run Sonatype Nancy as part of your GitHub Actions workflow."
 
+# required to fetch nancy.apk via curl
 RUN apk add --no-cache curl
 
 # required to get grep that supports -P option

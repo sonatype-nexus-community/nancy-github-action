@@ -31,7 +31,7 @@ For example: `sleuth --loud`
 
 The example below only requires `go` be installed in order to generate the `go.list` file. 
 You could instead have some other part of the CI build generate that file for use by `nancy`.
-```
+```yaml
 name: Go Nancy
 
 on: [push]
@@ -54,6 +54,13 @@ jobs:
       uses: sonatype-nexus-community/nancy-github-action@main
 ```
 
+The snippet below shows how to use a specific version of Nancy (rather than the latest)
+```yaml
+    - name: Scan with specific Nancy version
+      uses: sonatype-nexus-community/nancy-github-action@use_latest_nancy
+      with:
+        nancyVersion: "v1.0.6"
+```
 ## Development
 
 I found it useful to leverage the [act](https://github.com/nektos/act) project while developing
@@ -62,7 +69,7 @@ of that branch. For example, a [test project](https://github.com/bhamail/nancy-g
 Notice the commit hash `950a8965cd37d8e14aaa6aebd6c0d71b4da71fa3` used below in the `Scan` step to run the 
 development branch. 
 
-```
+```yaml
 name: Go
 
 on:
