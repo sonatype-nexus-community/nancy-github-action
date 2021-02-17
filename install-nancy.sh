@@ -22,8 +22,8 @@ if [ -z "$desiredVersion" ]; then
 elif [[ ${desiredVersion} == "latest" ]]; then
   latest_version_is=$(curl --fail -s https://api.github.com/repos/sonatype-nexus-community/nancy/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
   desiredVersion=${latest_version_is}
-elif [[ $desiredVersion != v* ]]; then
-  >&2 echo "specific version must start with v, like: v1.0.15"
+elif [[ ${desiredVersion:0:1} != "v" ]]; then
+  >&2 echo "specific nancy version (${desiredVersion}) must start with v, like: v1.0.15"
   exit 1
 fi
 # installer filename excludes v from version
