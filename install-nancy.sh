@@ -17,14 +17,14 @@
 desiredVersion="$1"
 echo "desiredVersion: ${desiredVersion}"
 if [ -z "$desiredVersion" ]; then
-  >&2 echo "must specify a desiredVersion"
+  >&2 echo "must specify a desiredVersion, like: latest or v1.0.15"
   exit 1
 fi
 if [[ ${desiredVersion} == "latest" ]]; then
   latest_version_is=$(curl --fail -s https://api.github.com/repos/sonatype-nexus-community/nancy/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
   desiredVersion=${latest_version_is}
 fi
-sourceUrl="https://github.com/sonatype-nexus-community/nancy/releases/download/v${desiredVersion}/nancy_${desiredVersion}_linux_386.apk"
+sourceUrl="https://github.com/sonatype-nexus-community/nancy/releases/download/${desiredVersion}/nancy_${desiredVersion:1}_linux_386.apk"
 echo "installing nancy via ${sourceUrl}"
 curl --fail -L -o nancy.apk ${sourceUrl}
 apk add --no-cache --allow-untrusted nancy.apk
