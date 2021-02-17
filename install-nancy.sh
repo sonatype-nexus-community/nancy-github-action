@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/sh
 
 # Copyright (c) 2019-present Sonatype, Inc.
 #
