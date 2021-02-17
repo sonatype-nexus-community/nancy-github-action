@@ -18,6 +18,7 @@ LABEL com.github.actions.name="Nancy for GitHub Actions" \
     com.github.actions.description="Run Sonatype Nancy as part of your GitHub Actions workflow."
 
 RUN apk add --no-cache curl && \
+    echo "NANCY_VERSION: $NANCY_VERSION" && \
     curl -L -o nancy.apk \
         https://github.com/sonatype-nexus-community/nancy/releases/download/v1.0.0/nancy_1.0.0_linux_386.apk && \
     apk add --no-cache --allow-untrusted nancy.apk
