@@ -17,10 +17,18 @@ FROM alpine:3.12
 LABEL com.github.actions.name="Nancy for GitHub Actions" \
     com.github.actions.description="Run Sonatype Nancy as part of your GitHub Actions workflow."
 
-RUN apk add --no-cache curl && \
-    echo "NANCY_VERSION: $NANCY_VERSION" && \
-    curl -L -o nancy.apk \
-        https://github.com/sonatype-nexus-community/nancy/releases/download/v1.0.0/nancy_1.0.0_linux_386.apk && \
+RUN apk add --no-cache curl
+# required to get grep that supports -P option
+RUN apk add --no-cache --upgrade grep
+RUN desiredVersion="${NANCY_VERSION}" \
+    echo "desiredVersion: ${desiredVersion}" \
+    if [[ ${desiredVersion} == "latest" ]] then \
+      latest_version_is=$(curl --fail -s https://api.github.com/repos/sonatype-nexus-community/nancy/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")') \
+      desiredVersion=${latest_version_is} \
+    fi \
+    sourceUrl="https://github.com/sonatype-nexus-community/nancy/releases/download/${desiredVersion}/nancy-${desiredVersion}-linux_386.apk" \
+    echo "installing nancy via ${sourceUrl}" \
+    curl -L -o nancy.apk ${sourceUrl} \
     apk add --no-cache --allow-untrusted nancy.apk
 
 COPY entrypoint.sh /entrypoint.sh

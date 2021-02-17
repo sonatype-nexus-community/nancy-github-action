@@ -14,4 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+echo "entrypoint NANCY_VERSION: ${NANCY_VERSION}"
+
 nancy $2 < $1
