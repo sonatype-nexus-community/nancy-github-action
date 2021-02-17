@@ -15,5 +15,6 @@
 # limitations under the License.
 
 echo "entrypoint NANCY_VERSION: ${NANCY_VERSION}"
+echo "entrypoint INPUT_NANCYVERSION: ${INPUT_NANCYVERSION}"
 
 nancy $2 < $1
