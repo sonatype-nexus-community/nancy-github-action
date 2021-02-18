@@ -30,4 +30,4 @@ fi
 sourceUrl="https://github.com/sonatype-nexus-community/nancy/releases/download/${desiredVersion}/nancy_${desiredVersion:1}_linux_386.apk"
 echo "installing nancy via ${sourceUrl}"
 curl --fail -L -o nancy.apk ${sourceUrl}
-apk add --no-cache --quiet --allow-untrusted nancy.apk
+apk add --quiet --allow-untrusted nancy.apk
