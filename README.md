@@ -125,6 +125,18 @@ suffix to your `uses` statement, like:
 This way you will use the latest and greatest version of this action, and will not be left behind if/when we forget to
 do the manual release clicking.
 
+Steps:
+
+1. Checkout/pull the latest `master` branch, and create a new tag with the desired semantic version and a helpful note:
+
+       git tag -a v1.0.x -m "Helpful message in tag."
+
+2. Push the tag up:
+
+       git push origin v0.0.x
+
+3. Click through the GitHub web ui release stuff, using the tag created above as the latest release.
+
 ## The Fine Print
 
 It is worth noting that this is **NOT SUPPORTED** by Sonatype, and is a contribution of ours
