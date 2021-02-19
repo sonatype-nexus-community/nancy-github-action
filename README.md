@@ -57,7 +57,7 @@ jobs:
 The snippet below shows how to use a specific version of Nancy (rather than the latest)
 ```yaml
     - name: Scan with specific Nancy version
-      uses: sonatype-nexus-community/nancy-github-action@use_latest_nancy
+      uses: sonatype-nexus-community/nancy-github-action@main
       with:
         nancyVersion: "v1.0.6"
 ```
