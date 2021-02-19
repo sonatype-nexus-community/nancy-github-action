@@ -113,6 +113,18 @@ jobs:
     Error: error during connect: Post "http://%2Fvar%2Frun%2Fdocker.sock/v1.40/exec/9f2eb3f2ea59b7e41c32efe56a90c2919fe4b459b3f1e763dd02686f797839da/start": net/http: HTTP/1.x transport connection broken: unsupported transfer encoding: "identity"
     ```
 
+### Release Process
+
+For now, a release is done manually by clicking through the GitHub web ui.
+
+However, releases are not really needed. If you want to use the latest version of this GH Action, just add the `@main`
+suffix to your `uses` statement, like:
+```yaml
+      uses: sonatype-nexus-community/nancy-github-action@main
+```
+This way you will use the latest and greatest version of this action, and will not be left behind if/when we forget to
+do the manual release clicking.
+
 ## The Fine Print
 
 It is worth noting that this is **NOT SUPPORTED** by Sonatype, and is a contribution of ours
