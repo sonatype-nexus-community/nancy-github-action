@@ -14,4 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# INPUT_NANCYVERSION env var is set automagically to the value of inputs.nancyVersion
+/install-nancy.sh $INPUT_NANCYVERSION
+
 nancy $2 < $1
