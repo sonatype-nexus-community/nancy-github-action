@@ -27,7 +27,7 @@ elif [[ ${desiredVersion:0:1} != "v" ]]; then
   exit 1
 fi
 # installer filename excludes v from version
-sourceUrl="https://github.com/sonatype-nexus-community/nancy/releases/download/${desiredVersion}/nancy_${desiredVersion:1}_linux_386.apk"
+sourceUrl="https://github.com/sonatype-nexus-community/nancy/releases/download/${desiredVersion}/nancy_${desiredVersion:1}_linux_amd64.apk"
 echo "installing nancy via ${sourceUrl}"
 curl --fail -L -o nancy.apk ${sourceUrl}
 apk add --no-progress --quiet --no-cache --allow-untrusted nancy.apk
