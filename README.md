@@ -133,7 +133,7 @@ Steps:
 
 2. Push the tag up:
 
-       git push origin v0.0.x
+       git push origin v1.0.x
 
 3. Click through the GitHub web ui release stuff, using the tag created above as the latest release.
 
