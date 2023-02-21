@@ -27,6 +27,18 @@ You can customize this input with other commands and flags recognized by `nancy`
  
 For example: `sleuth --loud`
 
+### `nancyVersion`
+
+**Default** : `latest` 
+
+The version of Nancy to run. 
+
+Examples: `latest`, `v1.0.15` See: https://github.com/sonatype-nexus-community/nancy/releases for available versions..
+
+### `githubToken`
+
+Optional GitHub token. If not provided, no GitHub token will be used.
+
 ## Example Usage
 
 The example below only requires `go` be installed in order to generate the `go.list` file. 
