@@ -14,6 +14,10 @@ inputs:
     description: 'Optional nancy command. Defaults to "sleuth"'
     required: false
     default: 'sleuth'
+  githubToken:
+    description: 'Optional GitHub token. If not provided, no GitHub token will be used.'
+    required: false
+    default: ''
 runs:
   using: 'docker'
   image: 'Dockerfile'
